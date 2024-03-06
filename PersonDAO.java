@@ -32,4 +32,12 @@ public class PersonDAO {
         persona.setId(++PEOPLE_COUNT);
         personas.add(persona);
     }
+
+    public void update(int id, Persona persona) {
+        Persona persona1 = show(id); //находим человека которого хотим изменить
+        persona1.setName(persona.getName()); //добавляем ему новое имя пришедшее из формы
+    }
+    public void delete(int id){
+        personas.removeIf(persona -> persona.getId() == id);
+    }
 }

@@ -26,7 +26,7 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) { //получим одного человека из ДАО по айди и передадим на отображение в представление
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("persona", personDAO.show(id));
         return "show";
     }
 
@@ -40,6 +40,25 @@ public class PeopleController {
     @PostMapping()
     public String create(@ModelAttribute Persona persona) { //принимает данные и отправляет в базу данных
         personDAO.save(persona);
+        return "redirect:/people/all";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("persona", personDAO.show(id));
+        return "edit";
+    }
+
+    @PatchMapping("/{id}")
+    //выдает ошибку 405 из-за скрытого поля,которое создал спринг для обработки запроса.для решения нужен фильтр(application.properties)
+    public String update(@ModelAttribute Persona persona, @PathVariable("id") int id) {
+        personDAO.update(id, persona);
+        return "redirect:/people/all";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(id);
         return "redirect:/people/all";
     }
 }
