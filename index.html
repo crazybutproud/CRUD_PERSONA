@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+</head>
+<body>
+<p>All people</p>
+<div th:each ="person:${personas}">
+    <a th:threaf="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
+</div>
+</body>
+</html>
