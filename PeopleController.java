@@ -21,7 +21,7 @@ public class PeopleController {
 
     @GetMapping("/all") //ПРОБЛЕМА!Не показывает всех людей
     public String index(Model model) { //получим всех людей из ДАО и передадим на отображение в представление
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("personas", personDAO.index());
         return "/index";
     }
     @GetMapping("/{id}")

@@ -7,7 +7,7 @@
 <body>
 <p>All people</p>
 <div th:each ="person:${personas}">
-    <a th:threaf="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
+    <a th:href="@{'/people/'+${person.id}}" >[[${person.name}]]</a>
 </div>
 </body>
 </html>
